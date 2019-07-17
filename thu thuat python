@@ -33,6 +33,23 @@ Thủ thuật tự mò Python
           B2.3: Thêm icon cho file bằng cách thêm dòng sau vào trong phần 'exe' bên trong file *.spec: icon='Đường dẫn đầy đủ của icon'
                       Ví dụ: icon='D:\\test\\imgs\\logo.ico'
         
+                Ví dụ đoạn code của file spec (có Icon và tắt màn hình console):
+                    exe = EXE(pyz,
+                              a.scripts,
+                              a.binaries,
+                              a.zipfiles,
+                              a.datas,
+                              [],
+                              name='Tên File',
+                              debug=False,
+                              bootloader_ignore_signals=False,
+                              strip=False,
+                              upx=True,
+                              runtime_tmpdir=None,
+                              console=False , icon='Đường dẫn đầy đủ của file ảnh')
+
+                
+                
       B3: Sau khi đã thêm những thành phần cần thiết vào bên trong file *.spec, mở Command Line (Windows) hoặc Terminal (Linux),
           nhập câu lệnh: pyinstaller *.spec (* là tên file spec tạo ra ở B2, và lưu ý Command Line / Terminal phải đang đứng trên
           thư mục hiện đang chứa file spec)
