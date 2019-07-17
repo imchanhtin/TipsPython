@@ -1,0 +1,44 @@
+Thủ thuật tự mò Python 
+
+
+
+1. Lỗi ''utf-8' codec can't decode byte 0xff in position *:invalid start byte'
+    Lỗi này xuất hiện khi sử dụng hàm decode cho 1 biến kiểu Byte nhưng không ép về định dạng UTF-8 được vì có ký tự "\xff". 
+    Để khắc phục lỗi này, sử thêm trường "errors='ignore'" vào trong thành phần của hàm "decode", sẽ bỏ qua các ký tự đặc biệt này khi gặp.
+    Ví dụ: 
+          a = b.decode('utf-8')       ====== đổi thành =======> a = b.decode('utf-8',errors='ignore') 
+
+
+
+
+2. Các tạo file và thêm hình ảnh đi kèm vào "exe" từ PyQt / PySide (Sử dụng Pyinstalller):
+    Sau khi xây dựng xong chương trình, mở Command Line (Windows) hoặc Terminal (Linux), chuyển con trỏ vào thư mục chứa file Python.
+     B1: Nhập câu lệnh: pyinstaller <tên file python>.py
+     B2: Pyinstaller sẽ tự tạo ra một file *.spec (Trùng với tên của file Python). Mở file này lên và thêm các đường dẫn hình ảnh, 
+         các thông số mong muốn:
+         B2.1: Thêm dòng sau vào trong file để thêm hình ảnh kèm theo chương trình:
+                a.datas += [('Đường dẫn thu gọn của file 1', 'Đường dẫn đầy đủ của file 1', 'DATA'),
+                            ('Đường dẫn thu gọn của file 2', 'Đường dẫn đầy đủ của file 2', 'DATA'),
+                            ('Đường dẫn thu gọn của file 3', 'Đường dẫn đầy đủ của file 3', 'DATA')]
+                Ví dụ:
+                      a.datas += [('.\\imgs\\loading.gif'  , 'D:\\test\\imgs\\loading.gif'  , 'DATA'),
+                                  ('.\\imgs\\logo_team.png', 'D:\\test\\imgs\\logo_team.png', 'DATA'),
+                                  ('.\\imgs\\logo.ico'     , 'D:\\test\\imgs\\logo.ico'     , 'DATA'),
+                                  ('.\\imgs\\cover.png'    , 'D:\\test\\imgs\\cover.png'    , 'DATA'),
+                                  ('.\\imgs\\logo.png'     , 'D:\\test\\imgs\\logo.png'     , 'DATA')]
+
+          B2.2: Tắt màn hình Console khi chạy ứng dụng (nếu muốn) bằng cách thêm dòng sau vào trong phần 'exe' bên trong file *.spec:
+                                                    console=False
+
+          B2.3: Thêm icon cho file bằng cách thêm dòng sau vào trong phần 'exe' bên trong file *.spec: icon='Đường dẫn đầy đủ của icon'
+                      Ví dụ: icon='D:\\test\\imgs\\logo.ico'
+        
+      B3: Sau khi đã thêm những thành phần cần thiết vào bên trong file *.spec, mở Command Line (Windows) hoặc Terminal (Linux),
+          nhập câu lệnh: pyinstaller *.spec (* là tên file spec tạo ra ở B2, và lưu ý Command Line / Terminal phải đang đứng trên
+          thư mục hiện đang chứa file spec)
+      
+      B4: Vào thư mục "dist" để lấy file vừa build xong. 
+      
+        
+        
+       
