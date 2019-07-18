@@ -56,6 +56,13 @@ Thủ thuật tự mò Python
       
       B4: Vào thư mục "dist" để lấy file vừa build xong. 
       
+3. Ghi file dạng JSON
+     B1: Import thư viện json
+     B2: Thêm đoạn code vào trong file
+            with open("Đường dẫn đầy đủ của file", "a") as data:         ('a' để thêm dữ liệu mới vào cuối file)
+                data.write(json.dumps(log, indent=4, ensure_ascii=False))(ghi dữ liệu vào file, 'indent' để căn lề, ensure_ascii = False để ghi UTF-8 )
+                data.close()                                             (Đóng file sau khi ghi hoàn tất)
+     
         
         
        
